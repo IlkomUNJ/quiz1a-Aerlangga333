@@ -2,7 +2,7 @@
 #include "bank_customer.h"
 #include "buyer.h"
 
-enum PrimaryPrompt{LOGIN, REGISTER, EXIT, ADMIN_LOGIN};
+enum PrimaryPrompt{LOGIN, REGISTER, EXIT};
 enum RegisterPrompt{CREATE_BUYER, CREATE_SELLER, BACK};
 using namespace std;
 
@@ -10,16 +10,12 @@ int main() {
     //create a loop prompt 
     PrimaryPrompt prompt = LOGIN;
     RegisterPrompt regPrompt = CREATE_BUYER;
-    const string ADMIN_USERNAME = "root";
-    const string ADMIN_PASSWORD = "toor";
-    string username, password;
 
     while (prompt != EXIT) {
         cout << "Select an option: " << endl;
         cout << "1. Login" << endl;
         cout << "2. Register" << endl;
         cout << "3. Exit" << endl;
-        cout << "4. Admin Login" << endl;
         int choice;
         cin >> choice;
         prompt = static_cast<PrimaryPrompt>(choice - 1);
@@ -116,24 +112,6 @@ int main() {
                 break;
             case EXIT:
                 cout << "Exiting." << endl;
-                break;
-            case ADMIN_LOGIN:
-                /* Prompt for username & password then check the entries with our hard coded features */
-                cout << "Username: ";
-                cin >> username;
-                cout << "Password: ";
-                cin >> password;
-                /** After login create a sub prompt that provides the following features
-                1. Account Management
-                    - View All Buyers, Sellers
-                    - View All details of Buyers, Sellers
-                    - Seek certain buyer of seller based on Name / account Id / address / phone number
-                    - Create new buyer/seller/Bank account
-                    - Remove buyer/seller based on ID (all related info will be deleted)
-                2. System Report
-                    - Total number of Buyers, Sellers
-                    - Total number of Banking Accounts
-                */
                 break;
             default:
                 cout << "Invalid option." << endl;
