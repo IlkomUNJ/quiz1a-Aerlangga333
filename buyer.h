@@ -1,28 +1,35 @@
 #ifndef BUYER_H
 #define BUYER_H
 
-#include <cstddef>
 #include <string>
 #include "bank_customer.h"
-
 using namespace std;
 
 class Buyer {
 private:
     int id;
     string name;
-    BankCustomer &account; // Association with BankCustomer
+    BankCustomer *account; // pakai pointer
 
 public:
-    Buyer(int id, const string& name, BankCustomer &account0)
+    Buyer(int id, const string& name, BankCustomer *account0)
         : id(id), name(name), account(account0) {}
 
     int getId() const { return id; }
     string getName() const { return name; }
-    BankCustomer& getAccount() { return account; }
+    BankCustomer* getAccount() { return account; }
 
     void setId(int newId) { id = newId; }
-    void setName(const std::string& newName) { name = newName; }
+    void setName(const string& newName) { name = newName; }
+
+    void printInfo() const {
+        cout << "Buyer ID: " << id << ", Name: " << name << endl;
+        if (account) {
+            account->printInfo();
+        } else {
+            cout << "No linked bank account." << endl;
+        }
+    }
 };
 
 #endif // BUYER_H
